@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block title %}DJANGO CRUD{% endblock %} {% block content %}
+<div class="container mt-5">
+
+    {% include 'customers/customer_statistics.html' %}
+
+    <div class="container">
+
+           {% include 'customers/add_customer.html' %}
+
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">S.no</th>
+                    <th scope="col">Company Name</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Contact Email</th>
+                    <th scope="col">Acquired On</th>
+                    <th scope="col">Customer Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ customer.company_name }}</td>
+                    <td>{{ customer.first_name }}</td>
+                    <td>{{ customer.last_name }}</td>
+                    <td>{{ customer.contact_email }}</td>
+                    <td>{{ customer.acquired_on }}</td>
+                    <td>{{ customer.customer_status }}</td>
+                     <td>
+                         {% include 'customers/edit_customer.html' %}
+                         {% include 'customers/delete_customer.html' %}
+                     </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+<!-- edit_customer.html -->
+<button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editCustomerModal{{ customer.id }}">
+    <i class="bi bi-pencil-fill"></i>
+</button>
+
+<!-- Edit Customer Modal -->
+<div class="modal fade" id="editCustomerModal{{ customer.id }}" tabindex="-1" aria-labelledby="editCustomerModalLabel{{ customer.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCustomerModalLabel{{ customer.id }}">Edit Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'edit_customer' customer.id %}">
+                    {% csrf_token %}
+                    <!-- Populate form fields with customer data here -->
+                    <div class="form-group">
+                        <label for="company_name">Company Name</label>
+                        <input type="text" class="form-control" id="company_name" name="company_name" value="{{ customer.company_name }}" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" value="{{ customer.first_name }}" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" value="{{ customer.last_name }}" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_email">Contact Email</label>
+                        <input type="email" class="form-control" id="contact_email" name="contact_email" value="{{ customer.contact_email }}" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="acquired_on">Acquired On</label>
+                        <input type="date" class="form-control" id="acquired_on" name="acquired_on" value="{{ customer.acquired_on }}" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="customer_status">Customer Status</label>
+                        <select class="form-control" id="customer_status" name="customer_status" required>
+                            <option value="active" {% if customer.customer_status == 'active' %} selected {% endif %}>Active</option>
+                            <option value="inactive" {% if customer.customer_status == "inactive" %} selected {% endif %}>Inactive</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

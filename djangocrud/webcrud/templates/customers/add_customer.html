@@ -1,0 +1,49 @@
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+  Add Customer
+</button>
+
+<!-- Add Customer Modal -->
+    <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCustomerModalLabel">Add Customer</h5>
+                    <button type="button" data-bs-dismiss="modal" class="btn-close" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{% url 'add_customer' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="company_name">Company Name</label>
+                            <input type="text" class="form-control" id="company_name" name="company_name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_email">Contact Email</label>
+                            <input type="email" class="form-control" id="contact_email" name="contact_email" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="acquired_on">Acquired On</label>
+                            <input type="date" class="form-control" id="acquired_on" name="acquired_on" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="customer_status">Customer Status</label>
+                            <select class="form-control" id="customer_status" name="customer_status" required>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <button type="submit" role="button" class="btn btn-primary ripple-surface">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
